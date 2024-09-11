@@ -1,6 +1,11 @@
+import 'package:e_commerce/presentation/registration/common_widgets/button.dart';
+import 'package:e_commerce/core/constant/string.dart';
+import 'package:e_commerce/presentation/registration/common_widgets/textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import '../../core/provider/auth_provider.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -11,14 +16,20 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    final ButtonSizebox = height * .02;
+    final buttonsizebox = height * .02;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: IconButton(
+            icon: const Icon(CupertinoIcons.back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
         toolbarHeight: height * .09,
         backgroundColor: Colors.lightGreen,
         title: Padding(
@@ -26,186 +37,110 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Create Account',style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('start learning with create your account',style: TextStyle(fontSize: 14,color: Colors.grey.shade700),)
+              const Text('Login Account',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(
+                'Login into account',
+                style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
+              )
             ],
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Stack(
-            children: [Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: height * .01,),
-
-                SizedBox(height: height * .03,),
-                Text('Email or Phone Number',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-
-                TextField(
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Stack(children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height * .03,
+              ),
+              const Text(
+                'Email or Phone Number',
+                style: TextStyle(
+                    fontFamily: 'poppins',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+              textField(
+                  prefixIcon: const Icon(
+                    Icons.email_outlined,
+                    size: 25,
+                    color: Colors.grey,
+                  ),
                   controller: emailController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.email_outlined,size: 25,color: Colors.grey,),
-                    filled: true,
-                    fillColor: Color(0xfff8f9fa),
-                    focusColor:  Colors.white,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black26, width: 2.0),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white, width: 2.0),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    hintText: 'Enter Your email or Phone number',
-                    hintStyle: const TextStyle(color: Colors.grey,fontSize: 16),
+                  hinttext: 'Enter Your email or Phone number'),
+              SizedBox(
+                height: height * .03,
+              ),
+              const Text(
+                LoginScree.password,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              textField(
+                  prefixIcon: const Icon(
+                    CupertinoIcons.lock,
+                    size: 25,
+                    color: Colors.grey,
                   ),
-                ),
-
-
-                SizedBox(height: height * .03,),
-                Text('Password',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                TextField(
                   controller: passwordController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(CupertinoIcons.lock,size: 25,color: Colors.grey,),
-                    filled: true,
-                    fillColor: Color(0xfff8f9fa),
-                    focusColor:  Colors.white,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.black26, width: 2.0),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white, width: 2.0),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    hintText: 'Enter Your password',
-                    hintStyle: const TextStyle(color: Colors.grey,fontSize: 16),
-                  ),
+                  hinttext: 'Enter Your password'),
+              SizedBox(
+                height: height * 0.04,
+                width: double.infinity,
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Forgot Password ?',
+                      style: TextStyle(
+                          color: Colors.lightGreen,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    )
+                  ],
                 ),
-                Positioned(
-                  right: 10 ,
-                  child: Container(
-                    height: height * 0.04,
-                    width: width * 0.5,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child:  Center(
-                      child: Text(
-                        'Forgot Password ? ',
-                        style: const TextStyle(
-                           fontWeight: FontWeight.w500, fontSize: 18),
-                      ),
-                    ),
+              ),
+              SizedBox(
+                height: height * .03,
+              ),
+              Consumer<AuthProvider>(builder: (context, value, child) {
+                return value.isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : MyButton(
+                        onTap: () {
+                          value.signInUser(
+                              email: emailController.text,
+                              password: passwordController.text,
+                              context: context);
+                          // logIn(emailController.text, passwordController.text);
+                        },
+                        text: 'Login');
+              }),
+              SizedBox(
+                height: buttonsizebox - 0.04,
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  height: height * 0.07,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                ),
-
-
-                SizedBox(height: height * .04,),
-                GestureDetector(
-                  onTap: (){},
-                  child: Container(
-                    height: height * 0.07,
-                    decoration: BoxDecoration(
-                      color: const Color(0xff588157),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child:  Center(
-                      child: Text(
-                        'Create Account',
-                        style: const TextStyle(
-                            color: Colors.white,fontWeight: FontWeight.w700, fontSize: 18),
-                      ),
+                  child: const Center(
+                    child: Text(
+                      'Or using anothor Method',
+                      style: TextStyle(color: Color(0xffadb5bd), fontSize: 16),
                     ),
                   ),
                 ),
+              ),
 
-
-                SizedBox(height: ButtonSizebox - 0.04,),
-                GestureDetector(
-                  onTap: (){},
-                  child: Container(
-                    height: height * 0.07,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child:  Center(
-                      child: Text(
-                        'Or using anothor Method',
-                        style: const TextStyle(
-                            color: Color(0xffadb5bd), fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: ButtonSizebox,),
-                GestureDetector(
-                  onTap: (){},
-                  child: Container(
-                    height: height * 0.07,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey,width: 1),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child:  Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                              backgroundColor: Colors.transparent,
-                              radius: 15,
-                              child: SvgPicture.asset('assets/google.svg')),
-                          SizedBox(width: width * 0.04,),
-                          Text(
-                            'Sign Up with Google',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 18),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: ButtonSizebox,),
-                GestureDetector(
-                  onTap: (){},
-                  child: Container(
-                    height: height * 0.07,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black26,width: 1),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child:  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            radius: 20,
-                            child: SvgPicture.asset('assets/facebook.svg')),
-                        SizedBox(width: width * 0.04,),
-                        Text(
-                          'Sign Up with Facebook',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 18),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),]
+              //New Password Bottom screen
+            ],
           ),
-        ),
-
+        ]),
       ),
     );
   }

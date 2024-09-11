@@ -19,3 +19,8 @@ class CreatAccountString {
   static const password = 'Password';
   static const othermethod = 'Or using other method';
 }
+
+class FirestoreCollections {
+  static const String users = 'users';
+  static const String cart = 'cart';
+}

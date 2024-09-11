@@ -4,21 +4,24 @@ import 'package:flutter/material.dart';
 import '../../../domain/model_class.dart';
 
 class DiscriptionScreen extends StatefulWidget {
-  final String? id;
-  final String? title;
-  final String? price;
-  final String? description;
-  final String? category;
-  final String? image;
-  final Rating? rating;
+  final ProductModel products;
+  // final String? id;
+  // final String? title;
+  // final String? price;
+  // final String? description;
+  // final String? category;
+  // final String? image;
+  // final Rating? rating;
   const DiscriptionScreen({super.key,
-    required this.id,
-    required this.title,
-    required this.price,
-    required this.description,
-    required this.category,
-    required this.image,
-    this.rating});
+    required this.products
+    // required this.id,
+    // required this.title,
+    // required this.price,
+    // required this.description,
+    // required this.category,
+    // required this.image,
+    // this.rating
+  });
 
   @override
   State<DiscriptionScreen> createState() => _DiscriptionScreenState();
@@ -33,13 +36,13 @@ class _DiscriptionScreenState extends State<DiscriptionScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               CupertinoIcons.back,
               size: 20,
               color: Colors.white,
             )),
         backgroundColor: Colors.black,
-        title: Text('Discription',
+        title: const Text('Discription',
             style: TextStyle(
               color: Colors.white,
             )),
@@ -56,29 +59,29 @@ class _DiscriptionScreenState extends State<DiscriptionScreen> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                 image:DecorationImage(image: NetworkImage(widget.image??'')))),
+                 image:DecorationImage(image: NetworkImage(widget.products.image??'')))),
               ),
-              Text(widget.title??'',style:TextStyle(fontSize: 22,fontWeight: FontWeight.bold)),
+              Text(widget.products.title??'',style:const TextStyle(fontSize: 22,fontWeight: FontWeight.bold)),
 
               RichText(
                   text: TextSpan(children: [
-                    TextSpan(
+                    const TextSpan(
                         text: 'MRP   ',
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.black,
                             fontWeight: FontWeight.bold)),
                     TextSpan(
-                        text: '\$ ${widget.price}',
-                        style: TextStyle(
+                        text: '\$ ${widget.products.price}',
+                        style: const TextStyle(
                             fontSize: 18,
                             color: Colors.black,))
 
                   ])),
 
-              Text('price inclusive of all texes',style:TextStyle(fontSize: 18)),
-              SizedBox(height: 15,),
-              Text(widget.description??'',style:TextStyle(fontSize: 20,color: Colors.black)),
+              const Text('price inclusive of all texes',style:TextStyle(fontSize: 18)),
+              const SizedBox(height: 15,),
+              Text(widget.products.description??'',style:const TextStyle(fontSize: 20,color: Colors.black)),
 
               Row(
                 children: [
@@ -88,8 +91,8 @@ class _DiscriptionScreenState extends State<DiscriptionScreen> {
                     child: Container(
                         height: 50,
                         width: 320,
-                        decoration: BoxDecoration(color: Colors.black),
-                        child: Center(
+                        decoration: const BoxDecoration(color: Colors.black),
+                        child: const Center(
                           child: Text('ADD TO CART',
                               style: TextStyle(
                                   fontWeight: FontWeight.normal,
@@ -97,15 +100,15 @@ class _DiscriptionScreenState extends State<DiscriptionScreen> {
                                   fontSize: 18)),
                         )),
                   ),
-                  Container(
+                  SizedBox(
                     height: 50,
                     width: 50,
-                    child: IconButton(icon:Icon(CupertinoIcons.heart,size: 28,color: Colors.black,),onPressed: (){}),
+                    child: IconButton(icon:const Icon(CupertinoIcons.heart,size: 28,color: Colors.black,),onPressed: (){}),
                   ),
                 ],
               ),
               
-              Text('Discription')
+              const Text('Discription')
 
             ],
           ),

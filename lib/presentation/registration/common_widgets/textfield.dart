@@ -1,5 +1,3 @@
-import 'package:e_commerce/core/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class textField extends StatelessWidget {
@@ -10,15 +8,14 @@ class textField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  TextField(
+    return  TextFormField(
       controller: controller,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
         filled: true,
-        fillColor: Color(0xfff8f9fa),
+        fillColor: const Color(0xfff8f9fa),
         focusColor:  Colors.white,
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.black26, width: 2.0),
+        focusedBorder: OutlineInputBorder(borderSide: const BorderSide(color: Colors.black26, width: 2.0),
           borderRadius: BorderRadius.circular(10),
         ),
 

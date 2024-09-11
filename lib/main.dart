@@ -1,29 +1,39 @@
-import 'package:e_commerce/presentation/registration/login_screen.dart';
+import 'package:e_commerce/core/provider/cart_provider.dart';
 import 'package:e_commerce/presentation/registration/registration_screen.dart';
-import 'package:e_commerce/presentation/tabs/cart_screen/cart_screen.dart';
-import 'package:e_commerce/presentation/tabs/description_screen/discription_screen.dart';
 import 'package:e_commerce/presentation/tabs/home_screen/home_screen.dart';
+import 'package:e_commerce/presentation/tabs/home_screen/tabbar_screen/tab_bar.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'core/provider/api_provider.dart';
+import 'core/provider/auth_provider.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context)=>AuthProvider()),
+        ChangeNotifierProvider(create: (context) => ApiProvider()),
+        ChangeNotifierProvider(create: (context) => CartProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
 
-      theme: ThemeData(
+        theme: ThemeData.light(useMaterial3: true),
+         home: const  Registration()
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
       ),
-       home: LoginScreen()
-      //   home: const DiscriptionScreen()
-      //   home: const CartScreen()
     );
   }
 }

@@ -1,145 +1,150 @@
-import 'package:e_commerce/domain/api_service/call_api.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_commerce/presentation/tabs/home_screen/first.dart';
+import 'package:e_commerce/presentation/tabs/home_screen/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../core/provider/api_provider.dart';
 
-import '../../../domain/model_class.dart';
-import '../../../domain/provider/provider.dart';
-import '../description_screen/discription_screen.dart';
+class MainHomeScreen extends StatefulWidget {
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+
+  const MainHomeScreen({super.key,});
+
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainHomeScreen> createState() => _MainHomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  List<ProductModel> pm = [];
+class _MainHomeScreenState extends State<MainHomeScreen> {
 
+  int current = 0;
   @override
   void initState() {
     super.initState();
-    apiRepo().LoadApiData().then((value) {
-      setState(() {
-        pm = value;
-      });
-    });
+      Provider.of<ApiProvider>(context,listen: false).providerCategory();
+    Provider.of<ApiProvider>(context,listen: false).ProviderProductData();
   }
-
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
-    final _width = MediaQuery.of(context).size.width;
-    // final provider = Provider.of<ProductProvider>(context,listen: true);
+    final CategoryImage = [
+      'https://www.cnet.com/a/img/resize/c1ab83724b6c9ff0fc41efb24f6e382fb12048ec/hub/2023/01/26/c72313e2-806d-4ce3-8783-5c288d8fdf6f/canon-r6-ii-review-cnet-best-camera.jpg?auto=webp&fit=crop&height=576&width=768',
+      'https://i.pinimg.com/originals/ff/d0/5b/ffd05b7faed8b4dd1abe83bda8f6dd4d.jpg',
+      'https://e7.pngegg.com/pngimages/335/378/png-clipart-men-s-fashion-male-fashion-model-down.png',
+      'https://www.incredibleindia.net.in/wp-content/uploads/2023/02/Traditional-Saree-Dress-for-Women.jpg',
+
+    ];
+    final height = MediaQuery.of(context).size.height;
+     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text('hello'),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView.builder(
-            // physics: NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemCount: pm?.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisSpacing: 16,
-                mainAxisExtent: _height * .35,
-                crossAxisCount: 2,
-                mainAxisSpacing: 16),
-            itemBuilder: (context, index) => Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.circular(20)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DiscriptionScreen(
-                                id: pm?[index].id,
-                                title: pm?[index].title,
-                                price: pm?[index].price,
-                                description: pm?[index].description,
-                                category: pm?[index].category,
-                                image: pm?[index].image,
-                              )));
-                    },
-                    child: Stack(children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10, right: 10, top: 10, bottom: 5),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(pm?[index].image ?? '')),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          height: _height * .18,
-                          width: MediaQuery.sizeOf(context).width,
-                        ),
-                      ),
-                      Positioned(
-                        right: 1,
-                        top: 1,
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey,
-                                  spreadRadius: 2.0,
-                                  blurRadius: 3.0)
-                            ],
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Icon(
-                            CupertinoIcons.heart,
-                            size: 28,
-                          ),
-                        ),
-                      ),
-                    ]),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Text(
-                      pm?[index].title ?? "",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
+      resizeToAvoidBottomInset: false,
+       appBar: AppBar(
 
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Text(
-                      '\$ ${pm?[index].price}',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
+         toolbarHeight: height * 0.10,
+            backgroundColor: Colors.white,
+         flexibleSpace:   Consumer<ApiProvider>(
+             builder: (context,value,child) {
+               return  value.isLoading ? const Center(child: CircularProgressIndicator())
+                   :Row(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                   Expanded(
+                     child: ListView.builder(
+                         shrinkWrap: true,
+                         scrollDirection: Axis.horizontal,
+                         itemCount: value.categoryList.length,
+                         itemBuilder: (context, index) {
+                           return GestureDetector(
+                               onTap: (){
+                                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => first(id: value.categoryList[index].id.toString()),));
+                               },
+                               child:
+                               Padding(
+                                 padding: const EdgeInsets.all(8.0),
+                                 child: Container(
+                                   height:  height * .20,
+                                   width: width * .25,
+                                   decoration: BoxDecoration(
+                                       color: Colors.black,
+                                       image: DecorationImage(
+                                           image: NetworkImage(
+                                               CategoryImage[index]),
+                                           fit: BoxFit.fill,
+                                           opacity: .6),
+                                       borderRadius: BorderRadius.circular(10)),
+                                   child: Center(
+                                     child: Text(value.categoryList[index].name.toString(),
+                                          maxLines: 2,
+                                         style: const TextStyle(
+                                             color: Colors.white,
+                                             fontSize: 14,
+                                             fontWeight: FontWeight.bold)),
+                                   ),
+                                 ),
+                               )
+                           );
+                         }),
+                   ),
+                 ],
+               );
+             }
+         ),
+         ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+                    // const CarasoleSlider(),
+              SizedBox(height: height* 0.02,),
 
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Text(
-                      'rating ${pm?[index].rating?.rate}',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
+              // Container(height: height * 0.03,width: double.infinity,
+              // color: Colors.red,child: Center(
+              //   child: Marquee(
+              //         text: 'SALE UPTO 50% OFF',
+              //         style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),
+              //         scrollAxis: Axis.horizontal,
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //          blankSpace: 20.0,
+              //         startPadding: 10.0,
+              //         accelerationCurve: Curves.ease,
+              //         decelerationCurve: Curves.ease,
+              //       ),
+              // ),),
+              // Padding(
+              //   padding: const EdgeInsets.all(8),
+              //   child: SizedBox(
+              //     height: height * 0.16,width: double.infinity,
+              //       child: Container(
+              //         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.blue),
+              //         child: Image.network(
+              //           'https://assets.ajio.com/cms/AJIO/WEB/D-1.0-UHP-25042024-MainBannerDailyChanging-Z1-P1-100Hrsspecialrev.gif',
+              //           // 'https://assets.ajio.com/cms/AJIO/WEB/D-1.0-UHP-05012024-MainBannerDailyChanging-Z1-P1-AJIOMANIA-5090.gif',
+              //           fit: BoxFit.fill,
+              //         ),
+              //       )),
+              // ),
 
-                  // Text('@ ${pm!.price!.toString()}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
-                ],
+
+
+              Consumer<ApiProvider>(
+                builder: (context,product,child) {
+                  return  product.isLoading ? Center(child: const CircularProgressIndicator())
+                      :GridView.builder(
+                     physics: const NeverScrollableScrollPhysics(),
+                     scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: product.productList.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 2 ,
+                        mainAxisExtent: height * .37,
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 5),
+                    itemBuilder: (context, index){
+                       return productModelCard(product: product.productList[index]);
+                    }
+                  );
+                }
               ),
-            ),
+            ],
           ),
         ));
   }
 }
+
+

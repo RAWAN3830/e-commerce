@@ -26,14 +26,18 @@ class ProductModel{
       image: json["image"],
       rating:Rating.fromJson(json["rating"]));
 
-//   factory ProductModel.initial()=> ProductModel(
-//       id: 'id',
-//       title: 'title',
-//       price: 'id',
-//       description: 'description',
-//       category: 'category',
-//       image: 'image',
-//       rating:'rating');
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "title": title,
+    "price": price,
+    "description": description,
+    "category": category,
+    "image": image,
+    "rating": rating?.toJson(),
+  };
+
+
  }
 
 class Rating {
@@ -49,8 +53,11 @@ class Rating {
       count: json["count"].toString(),
       rate: json["rate"]?.toDouble()
   );
+
+  Map<String, dynamic> toJson() => {
+    "rate": rate,
+    "count": count,
+  };
 }
 
-List<ProductModel> productData =[];
 
-List<ProductModel> cartItem = [];

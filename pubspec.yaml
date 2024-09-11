@@ -39,6 +39,14 @@ dependencies:
   provider:
   flutter_svg:
   http:
+  firebase_core:
+  firebase_auth:
+  carousel_slider:
+  animated_text_kit:
+  marquee:
+  fluttertoast: 8.2.5
+  transparent_image:
+  cloud_firestore:
 
 
 dev_dependencies:
@@ -80,12 +88,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+fonts:
+     - family: poppins
+       fonts:
+         - asset: assets/fonts/poppins/black.ttf
+         - asset: assets/fonts/poppins/medium.ttf
+         - asset: assets/fonts/poppins/bold.ttf
+
+#           style: italic
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

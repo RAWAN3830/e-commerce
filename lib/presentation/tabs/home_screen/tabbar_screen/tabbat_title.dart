@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TabbarTitle extends StatelessWidget {
@@ -8,17 +7,17 @@ class TabbarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
-    final _width = MediaQuery.of(context).size.width;
-    final tabCircle = _height * 0.02;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    final tabCircle = height * 0.02;
     return Row(
       children: [
         CircleAvatar(
-            // backgroundColor: Colors.red,
+            //backgroundColor: Colors.red,
             radius: tabCircle,
              foregroundImage: NetworkImage(imagePath)),
         SizedBox(
-          width: _width * 0.02,
+          width: width * 0.02,
         ),
         Text(title)
       ],

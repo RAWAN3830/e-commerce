@@ -19,11 +19,11 @@ class _CartScreenState extends State<CartScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               CupertinoIcons.back,
               color: Colors.white,
             )),
-        title:Text('Cart',style: TextStyle(color: Colors.white,fontSize: 20)),
+        title:const Text('Cart',style: TextStyle(color: Colors.white,fontSize: 20)),
 
       ),
       body: SingleChildScrollView(
@@ -34,7 +34,7 @@ class _CartScreenState extends State<CartScreen> {
               Container(
                 height: 200,
                 width: double.infinity,
-                decoration: BoxDecoration(color: Colors.white),
+                decoration: const BoxDecoration(color: Colors.white),
                 child: Row(children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -49,13 +49,13 @@ class _CartScreenState extends State<CartScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('T-Shirt',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                        Text('Men Straight Fit Pure ',style: TextStyle(fontSize: 15),),
-                        SizedBox(height: 10,),
-                        Text('\$ 1.99',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-                        SizedBox(height: 10,),
+                        const Text('T-Shirt',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                        const Text('Men Straight Fit Pure ',style: TextStyle(fontSize: 15),),
+                        const SizedBox(height: 10,),
+                        const Text('\$ 1.99',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                        const SizedBox(height: 10,),
 
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
 
@@ -67,9 +67,9 @@ class _CartScreenState extends State<CartScreen> {
 
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         RichText(
-                            text: TextSpan(children: [
+                            text: const TextSpan(children: [
                               TextSpan(
                                   text: '7 days',
                                   style: TextStyle(
@@ -92,9 +92,9 @@ class _CartScreenState extends State<CartScreen> {
                 padding: const EdgeInsets.only(top: 8.0,bottom: 8),
                 child: Container(height: 50,
                 width: double.infinity,
-               decoration: BoxDecoration(color: Colors.white),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+               decoration: const BoxDecoration(color: Colors.white),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -111,7 +111,7 @@ class _CartScreenState extends State<CartScreen> {
               Container(
                 height: 225,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white
                 ),
                 child: Padding(
@@ -119,54 +119,54 @@ class _CartScreenState extends State<CartScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10,bottom: 5,),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10,bottom: 5,),
                         child: Text('PRICE DETAILS (3 Items)',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 14)),
                       ),
                       Divider(height: 10,color: Colors.grey.shade200,),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Total MRP',style: TextStyle(fontSize: 15),),
                           Text('\$ 1700',style: TextStyle(fontSize: 15),)
                         ],
                       ),
-                      SizedBox(height: 8,),
-                      Row(
+                      const SizedBox(height: 8,),
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Discount on MRP',style: TextStyle(fontSize: 15),),
                           Text('- \$ 170',style: TextStyle(fontSize: 15,color: Colors.green,fontWeight: FontWeight.w500),)
                         ],
                       ),
-                      SizedBox(height: 5,),
-                      Row(
+                      const SizedBox(height: 5,),
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Coupon Discount',style: TextStyle(fontSize: 15),),
                           Text('Apply Coupon',style: TextStyle(fontSize: 15,color: Colors.red,fontWeight: FontWeight.w500),)
                         ],
                       ),
-                      SizedBox(height: 5,),
-                      Row(
+                      const SizedBox(height: 5,),
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Shipping Fee',style: TextStyle(fontSize: 15),),
                           Text('FREE',style: TextStyle(fontSize: 15,color: Colors.green,fontWeight: FontWeight.w500),)
                         ],
                       ),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       Divider(height: 10,color: Colors.grey.shade200,),
 
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 10,bottom: 5,),
+                            padding: EdgeInsets.only(top: 10,bottom: 5,),
                             child: Text('Total Amount',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15)),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 10,bottom: 5,),
+                            padding: EdgeInsets.only(top: 10,bottom: 5,),
                             child: Text('\$ 1034',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16)),
                           ),
                         ],
@@ -177,12 +177,12 @@ class _CartScreenState extends State<CartScreen> {
                 ),
 
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Container(
                   height: 50,
                   width: double.infinity,
                   decoration: BoxDecoration(color: Colors.black,borderRadius: BorderRadius.circular(5)),
-                  child: Center(
+                  child: const Center(
                     child: Text('PLACE ORDER',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
