@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "412346781266",
+    "project_id": "shopsizzle-35b78",
+    "storage_bucket": "shopsizzle-35b78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412346781266:android:4eab1b695f67266299d98b",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCASEPPo3UG6QUhrDB8ZSmaEvnvndXUgJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

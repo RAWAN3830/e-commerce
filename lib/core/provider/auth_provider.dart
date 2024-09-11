@@ -1,0 +1,57 @@
+import 'package:e_commerce/core/constant/string.dart';
+import 'package:e_commerce/presentation/tabs/home_screen/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../../presentation/registration/login_screen.dart';
+import '../../presentation/tabs/home_screen/tabbar_screen/tab_bar.dart';
+import '../services/authentication_service/firebase_auth.dart';
+
+class AuthProvider with ChangeNotifier{
+  late UserCredential userCredential;
+
+  //-----------------------------------  CREATE - USER --------------------------------------------------
+
+  Future<void> createUser({required String email,required String password,required BuildContext context}) async {
+   try {
+      userCredential =
+          await AuthService.createUser(email: email, password: password);
+      notifyListeners();
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ));
+    }
+   catch (e) {
+     if (e.toString().contains('[firebase_auth/invalid-email]')) {
+       Fluttertoast.showToast(msg: 'The email address is badly formatted.');
+     }
+     else if(e.toString().contains('[firebase_auth/weak-password]'))
+       Fluttertoast.showToast(msg: 'Password should be at least 6 characters');
+
+     else if(e.toString().contains('[firebase_auth/email-already-in-use]'))
+       Fluttertoast.showToast(msg: 'The email address is already in use by another account.');
+     rethrow;
+   }
+   notifyListeners();
+  }
+
+
+//-----------------------------------  SING IN USER --------------------------------------------------
+
+  Future<void> signInUser({required String email, required String password,required BuildContext context}) async {
+   try {
+      userCredential = await AuthService.loginUser(email: email, password: password);
+      notifyListeners();
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  TabBarScreen(),), (route) => false); 
+    }
+   catch(e)
+   {
+     if(e.toString().contains('[firebase_auth/invalid-credential]')){
+       Fluttertoast.showToast(msg: 'The supplied auth credential is incorrect malformed or has expired.');
+     }
+     rethrow;
+   }
+    notifyListeners();
+  }
+}
