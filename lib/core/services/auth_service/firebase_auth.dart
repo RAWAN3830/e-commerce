@@ -25,6 +25,7 @@ class AuthService {
         .collection(FirestoreCollections.users)
         .doc(userCredentials.user?.uid)
         .set(userData);
+
     await _fireStore
         .collection(FirestoreCollections.cart)
         .doc(userCredentials.user?.uid)
