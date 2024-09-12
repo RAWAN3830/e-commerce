@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
                 useMaterial3: true,
               )
                   : ThemeData.dark(useMaterial3: true),
-             home: const  LoginScreen()
+             home: const  Registration()
 
           );
         }

@@ -39,14 +39,13 @@ dependencies:
   provider:
   flutter_svg:
   http:
-  firebase_core:
   firebase_auth:
   carousel_slider:
   animated_text_kit:
   marquee:
   fluttertoast: 8.2.5
-  transparent_image:
   cloud_firestore:
+
 
 
 dev_dependencies:

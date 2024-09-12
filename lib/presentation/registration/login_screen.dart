@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/provider/auth_provider.dart';
+import '../tabs/home_screen/home_screen.dart';
+import '../tabs/home_screen/tabbar_screen/tab_bar.dart';
 import 'common_widgets/model_bottom_sheet.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,6 +19,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +63,8 @@ class _LoginScreenState extends State<LoginScreen> {
               const Text(
                 'Email or Phone Number',
                 style: TextStyle(
-                    fontFamily: 'poppins',
+                   fontFamily: 'suse',
+                    fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.bold,
                     fontSize: 18),
               ),
@@ -85,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     size: 25,
                     color: Colors.grey,
                   ),
-                  controller: passwordController,
+                  controller: newPasswordController,
                   hinttext: 'Enter Your password'),
               SizedBox(
                 height: height * 0.04,
@@ -100,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           showDragHandle: true,
                           context: context,
                           builder: (context) {
-                            return ForgetPassword();
+                            return const ForgetPassword();
                           },
                         );
                       },
@@ -119,23 +123,24 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: height * .03,
               ),
               Consumer<AuthProvider>(builder: (context, value, child) {
-                return value.isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : MyButton(
+                return
+                  // value.isLoading
+                    // ? const Center(child: CircularProgressIndicator())
+                    // :
+                MyButton(
+                        text: 'Login',
                         onTap: () {
-                          value.signInUser(
-                              email: emailController.text,
-                              password: passwordController.text,
-                              context: context);
+                          value.signInUser(email: emailController.text, password: passwordController.text, context: context);
                           // logIn(emailController.text, passwordController.text);
-                        },
-                        text: 'Login');
+                        });
               }),
               SizedBox(
                 height: buttonsizebox - 0.04,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  const TabBarScreen(),), (route) => false);
+                },
                 child: Container(
                   height: height * 0.07,
                   decoration: BoxDecoration(

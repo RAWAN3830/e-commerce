@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/constant/string.dart';
 import 'button.dart';
 
 class ForgetPassword extends StatefulWidget {
@@ -13,11 +14,12 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
+  // forgetPassword() async {
+  //   await FirebaseAuth.instance
+  //       .sendPasswordResetEmail(email: emailController.text);
+  // }
 
-  forgetPassword()async{
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text);
-  }
-  TextEditingController emailController=TextEditingController();
+  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -32,52 +34,129 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: height * 0.01,
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            SizedBox(
+              height: height * 0.01,
+            ),
+            const Text(
+              LoginScree.forgotp,
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const Text(
+              LoginScree.enteremailorphone,
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            ),
+            SizedBox(
+              height: height * 0.04,
+            ),
+            const Text(
+              LoginScree.email,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: height * 0.01,
+            ),
+            textField(
+                prefixIcon: const Icon(
+                  Icons.email_outlined,
+                  size: 25,
+                  color: Colors.grey,
                 ),
-                const Text(
-                  'Forgot Password',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-
-
-                const Text(
-                  'Enter your mail or phone number',
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-                SizedBox(
-                  height: height * 0.04,
-                ),
-                const Text(
-                 'Enter your Email',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                textField(
-                    prefixIcon: const Icon(
-                      Icons.email_outlined,
-                      size: 25,
-                      color: Colors.grey,
-                    ),
-                    controller: emailController,
-                    hinttext: 'Enter Your email or Phone number'),
-                SizedBox(
-                  height: height * 0.03,
-                ),
-               MyButton(onTap: (){
-                 forgetPassword();
-                 Navigator.pop(context);
-               }, text:'Send Code')
+                controller: emailController,
+                hinttext: LoginScree.enteremailorphone),
+            SizedBox(
+              height: height * 0.03,
+            ),
+            MyButton(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                text: 'Send Code')
           ]),
         ),
       ),
     );
   }
 }
+//
+// // showModalBottomSheet<void>(
+// // isDismissible: true,
+// // showDragHandle: true,
+// // context: context,
+// // builder: (BuildContext context) {
+// // return Container(
+// // height: height * 0.6,
+// // decoration: const BoxDecoration(
+// // borderRadius: BorderRadius.only(
+// // topLeft: Radius.circular(18),
+// // topRight: Radius.circular(18)),
+// // ),
+// // child: Center(
+// // child: Padding(
+// // padding: const EdgeInsets.all(10),
+// // child: Column(
+// // crossAxisAlignment: CrossAxisAlignment.start,
+// // children: [
+// // SizedBox(
+// // height: height * 0.01,
+// // ),
+// // const Text(
+// // LoginScree.createnewPass,
+// // style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+// // ),
+// //
+// // const Text(LoginScree.enteremailorphone,
+// // style: TextStyle(
+// // fontSize: 15,
+// // ),
+// // ),
+// // SizedBox(
+// // height: height * 0.04,
+// // ),
+// // const Text('New Password',
+// // style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+// // ),
+// // SizedBox(
+// // height: height * 0.01,
+// // ),
+// // textField(
+// // prefixIcon: const Icon(
+// // Icons.password,
+// // size: 25,
+// // color: Colors.grey,
+// // ),
+// // controller: newPasswordController,
+// // hinttext: LoginScree.password),
+// // SizedBox(
+// // height: height * 0.01,
+// // ),
+// // const Text(
+// // LoginScree.conformpass,
+// // style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+// // ),
+// // SizedBox(
+// // height: height * 0.01,
+// // ),
+// // textField(
+// // prefixIcon: const Icon(
+// // Icons.password,
+// // size: 25,
+// // color: Colors.grey,
+// // ),
+// // controller: newPasswordController,
+// // hinttext: LoginScree.password),
+// // SizedBox(
+// // height: height * 0.03,
+// // ),
+// // MyButton(onTap: (){
+// // Navigator.pop(context);
+// // }, text:'Change Password')
+// // ]),
+// // ),
+// // ),
+// // );
+// // },
+// // );

@@ -101,9 +101,11 @@ class _RegistrationState extends State<Registration> {
               ),
               Consumer<AuthProvider>(
                 builder: (context, value, child) {
-                  return value.isLoading
-                      ? const Center(child: CircularProgressIndicator())
-                      : MyButton(
+                  return
+                    // value.isLoading
+                    //   ? const Center(child: CircularProgressIndicator())
+                    //   :
+                  MyButton(
                           onTap: () async {
                             await AuthProvider().createUser(
                                 email: emailController.text,

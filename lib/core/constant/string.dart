@@ -4,10 +4,13 @@ class LoginScree {
   static const email = 'Email or Phone Number';
   static const password = 'Password';
   static const signin = 'Sign In';
-  static const forgotp = 'Forgot PassWord';
-  static const enteremail = 'Enter your mail or phone number';
+  static const forgotp = 'Forgot Password';
+  static const enteremailorphone = 'Enter your Email or phone number';
   static const sendcode = 'Send Code';
   static const newpassword = 'New Password';
+  static const createnewPass = 'Create New Password';
+  static const conformpass = 'Conform New Password';
+
 }
 
 
