@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/provider/cart_provider.dart';
+import 'package:e_commerce/presentation/registration/login_screen.dart';
 import 'package:e_commerce/presentation/registration/registration_screen.dart';
 import 'package:e_commerce/presentation/tabs/home_screen/home_screen.dart';
 import 'package:e_commerce/presentation/tabs/home_screen/tabbar_screen/tab_bar.dart';
@@ -26,13 +27,23 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ApiProvider()),
         ChangeNotifierProvider(create: (context) => CartProvider()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+      child: Consumer<ApiProvider>(
+        builder: (context,theme,child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
 
-        theme: ThemeData.light(useMaterial3: true),
-         home: const  Registration()
+             theme: (theme.isTheme == false)
+                  ? ThemeData(
+                colorScheme:
+                ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: true,
+              )
+                  : ThemeData.dark(useMaterial3: true),
+             home: const  LoginScreen()
 
+          );
+        }
       ),
     );
   }

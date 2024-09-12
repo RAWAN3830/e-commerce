@@ -6,8 +6,7 @@ import 'package:flutter/cupertino.dart';
 import '../../domain/model_class.dart';
 
 class CartProvider extends ChangeNotifier{
-
-
+  List<ProductModel> cartProducts = [];
   bool isLoading = false;
 
   void setLoading(bool val){
@@ -18,8 +17,7 @@ class CartProvider extends ChangeNotifier{
     setLoading(true);
     final firestore = FirebaseFirestore.instance;
     final uid = FirebaseAuth.instance.currentUser?.uid;
-    List<ProductModel> cartProducts = [];
-    // cartProducts = [];
+    cartProducts = [];
     final data = await firestore.collection(FirestoreCollections.cart).doc(uid).get();
     final productList = await data.data()?['products'];
     for(var product in productList){

@@ -12,6 +12,7 @@ import '../services/api_service/product_by_category_api.dart';
 class ApiProvider with ChangeNotifier {
 
   bool isLoading = false;
+  bool isTheme = false;
   void setLoading(bool val)
   {
     isLoading = val;
@@ -55,6 +56,16 @@ class ApiProvider with ChangeNotifier {
     await addProductToCart.addToCart(product);
     setLoading(false);
     notifyListeners();
+  }
+
+
+  set setTheme(value) {
+    isTheme = value;
+    notifyListeners();
+  }
+
+  get getTheme {
+    return isTheme;
   }
 
 

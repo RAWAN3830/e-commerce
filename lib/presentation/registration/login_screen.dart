@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/provider/auth_provider.dart';
+import 'common_widgets/model_bottom_sheet.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -89,15 +90,27 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: height * 0.04,
                 width: double.infinity,
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      'Forgot Password ?',
-                      style: TextStyle(
-                          color: Colors.lightGreen,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          isDismissible: true,
+                          showDragHandle: true,
+                          context: context,
+                          builder: (context) {
+                            return ForgetPassword();
+                          },
+                        );
+                      },
+                      child: Text(
+                        'Forgot Password ?',
+                        style: TextStyle(
+                            color: Colors.lightGreen,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
                     )
                   ],
                 ),
