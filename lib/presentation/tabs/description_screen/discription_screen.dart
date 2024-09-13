@@ -1,26 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../core/provider/api_provider.dart';
 import '../../../domain/model_class.dart';
 
 class DiscriptionScreen extends StatefulWidget {
   final ProductModel products;
-  // final String? id;
-  // final String? title;
-  // final String? price;
-  // final String? description;
-  // final String? category;
-  // final String? image;
-  // final Rating? rating;
+
   const DiscriptionScreen({super.key,
     required this.products
-    // required this.id,
-    // required this.title,
-    // required this.price,
-    // required this.description,
-    // required this.category,
-    // required this.image,
-    // this.rating
+
   });
 
   @override
@@ -88,17 +78,26 @@ class _DiscriptionScreenState extends State<DiscriptionScreen> {
 
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                        height: 50,
-                        width: 320,
-                        decoration: const BoxDecoration(color: Colors.black),
-                        child: const Center(
-                          child: Text('ADD TO CART',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.white,
-                                  fontSize: 18)),
-                        )),
+                    child: Consumer<ApiProvider>(
+                      builder: (context,value,child) {
+                        return GestureDetector(
+                          onTap: (){
+                            value.addToCart(widget.products);
+                          },
+                          child: Container(
+                              height: 50,
+                              width: 320,
+                              decoration: const BoxDecoration(color: Colors.black),
+                              child: const Center(
+                                child: Text('ADD TO CART',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.white,
+                                        fontSize: 18)),
+                              )),
+                        );
+                      }
+                    ),
                   ),
                   SizedBox(
                     height: 50,

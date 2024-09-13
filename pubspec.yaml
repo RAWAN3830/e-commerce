@@ -43,6 +43,7 @@ dependencies:
   carousel_slider:
   animated_text_kit:
   marquee:
+  firebase_core:
   fluttertoast: 8.2.5
   cloud_firestore:
 

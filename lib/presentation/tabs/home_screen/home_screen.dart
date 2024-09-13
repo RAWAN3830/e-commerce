@@ -1,3 +1,101 @@
+// import 'package:e_commerce/presentation/tabs/home_screen/first.dart';
+// import 'package:e_commerce/presentation/tabs/home_screen/product_card.dart';
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import '../../../core/provider/api_provider.dart';
+//
+// class MainHomeScreen extends StatefulWidget {
+//   const MainHomeScreen({super.key,});
+//
+//   @override
+//   State<MainHomeScreen> createState() => _MainHomeScreenState();
+// }
+//
+// class _MainHomeScreenState extends State<MainHomeScreen> {
+//   int current = 0;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     Provider.of<ApiProvider>(context, listen: false).providerCategory();
+//     Provider.of<ApiProvider>(context, listen: false).ProviderProductData();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final height = MediaQuery.of(context).size.height;
+//     final width = MediaQuery.of(context).size.width;
+//
+//     return Consumer<ApiProvider>(
+//       builder: (context, value, child) {
+//         return value.isLoading
+//             ? const Center(child: CircularProgressIndicator())
+//             : DefaultTabController(
+//           length: value.categoryList.length, // Number of categories
+//           child: Scaffold(
+//             appBar: AppBar(
+//               toolbarHeight: height * 0.10,
+//               backgroundColor: Colors.white,
+//               bottom: TabBar(
+//                 isScrollable: true,
+//                 indicatorColor: Colors.black,
+//                 labelColor: Colors.black,
+//                 unselectedLabelColor: Colors.grey,
+//                 tabs: List<Tab>.generate(
+//                   value.categoryList.length,
+//                       (index) => Tab(
+//                     text: value.categoryList[index].name.toString(),
+//                   ),
+//                 ),
+//               ),
+//             ),
+//             body: TabBarView(
+//               children: List<Widget>.generate(
+//                 value.categoryList.length,
+//                     (index) => CategoryProducts(
+//                   categoryId: value.categoryList[index].id.toString(),
+//                 ),
+//               ),
+//             ),
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }
+//
+// class CategoryProducts extends StatelessWidget {
+//   final String categoryId;
+//
+//   const CategoryProducts({Key? key, required this.categoryId}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final height = MediaQuery.of(context).size.height;
+//
+//     return Consumer<ApiProvider>(
+//       builder: (context, product, child) {
+//         return product.isLoading
+//             ? const Center(child: CircularProgressIndicator())
+//             : GridView.builder(
+//           itemCount: product.productList.length,
+//           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//             crossAxisSpacing: 2,
+//             mainAxisExtent: height * .37,
+//             crossAxisCount: 2,
+//             mainAxisSpacing: 5,
+//           ),
+//           itemBuilder: (context, index) {
+//             return productModelCard(product: product.productList[index]);
+//           },
+//         );
+//       },
+//     );
+//   }
+// }
+
+
+import 'package:e_commerce/presentation/tabs/cart_screen/cart_screen.dart';
 import 'package:e_commerce/presentation/tabs/home_screen/first.dart';
 import 'package:e_commerce/presentation/tabs/home_screen/product_card.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +152,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                          itemBuilder: (context, index) {
                            return GestureDetector(
                                onTap: (){
-                                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => first(id: value.categoryList[index].id.toString()),));
+                                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartScreen(id: value.categoryList[index].id.toString()),));
                                },
                                child:
                                Padding(

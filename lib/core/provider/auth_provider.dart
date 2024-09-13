@@ -49,6 +49,9 @@ class AuthProvider with ChangeNotifier{
      if(e.toString().contains('[firebase_auth/invalid-credential]')){
        Fluttertoast.showToast(msg: 'The supplied auth credential is incorrect malformed or has expired.');
      }
+     else if(e.toString().contains('firebase_auth/')){
+       Fluttertoast.showToast(msg: 'The supplied auth credential is incorrect malformed or has expired.');
+     }
      rethrow;
    }
     notifyListeners();
