@@ -25,18 +25,16 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context)=>AuthProvider()),
         ChangeNotifierProvider(create: (context) => ApiProvider()),
-        ChangeNotifierProvider(create: (context) => CartProvider()),
+         ChangeNotifierProvider(create: (context) => CartProvider()),
       ],
       child: Consumer<ApiProvider>(
         builder: (context,theme,child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-
              theme: (theme.isTheme == false)
                   ? ThemeData(
-                colorScheme:
-                ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                fontFamily: 'suse',
+               appBarTheme: AppBarTheme(actionsIconTheme: IconThemeData(color: Colors.black)),
                 useMaterial3: true,
               )
                   : ThemeData.dark(useMaterial3: true),

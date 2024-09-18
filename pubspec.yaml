@@ -46,6 +46,7 @@ dependencies:
   firebase_core:
   fluttertoast: 8.2.5
   cloud_firestore:
+  custom_rating_bar:
 
 
 
@@ -88,12 +89,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-fonts:
-     - family: poppins
-       fonts:
-         - asset: assets/fonts/poppins/black.ttf
-         - asset: assets/fonts/poppins/medium.ttf
-         - asset: assets/fonts/poppins/bold.ttf
+#fonts:
+#     - family: suse
+#       fonts:
+#         - asset: assets/fonts/suse.ttf
 
 #           style: italic
   #   - family: Trajan Pro

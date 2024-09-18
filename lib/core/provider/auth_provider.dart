@@ -6,17 +6,21 @@ import '../../presentation/tabs/home_screen/tabbar_screen/tab_bar.dart';
 import '../services/auth_service/firebase_auth.dart';
 
 class AuthProvider with ChangeNotifier{
+  bool isLoading = false;
+  void setLoading(bool val)
+  { isLoading = val; }
 
-   late UserCredential userCredential;
+
+  late UserCredential userCredential;
 
   //-----------------------------------  CREATE - USER --------------------------------------------------
 
   Future<void> createUser({required String email,required String password,required BuildContext context}) async {
    try {
-
-      userCredential =
-          await AuthService.createUser(email: email, password: password);
+     setLoading(true);
+      userCredential = await AuthService.createUser(email: email, password: password);
       notifyListeners();
+      setLoading(false);
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => const LoginScreen(),
       ));
@@ -40,8 +44,10 @@ class AuthProvider with ChangeNotifier{
 
   Future<void> signInUser({required String email, required String password,required BuildContext context}) async {
    try {
+     setLoading(true);
       userCredential = await AuthService.loginUser(email: email, password: password);
       notifyListeners();
+     setLoading(false);
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  const TabBarScreen(),), (route) => false); 
     }
    catch(e)
@@ -49,8 +55,8 @@ class AuthProvider with ChangeNotifier{
      if(e.toString().contains('[firebase_auth/invalid-credential]')){
        Fluttertoast.showToast(msg: 'The supplied auth credential is incorrect malformed or has expired.');
      }
-     else if(e.toString().contains('firebase_auth/')){
-       Fluttertoast.showToast(msg: 'The supplied auth credential is incorrect malformed or has expired.');
+     else if(e.toString().contains('[firebase_auth/channel-error]')){
+       Fluttertoast.showToast(msg: 'Unable to establish connection on channel.');
      }
      rethrow;
    }

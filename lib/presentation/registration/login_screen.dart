@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/provider/api_provider.dart';
 import 'package:e_commerce/presentation/registration/common_widgets/button.dart';
 import 'package:e_commerce/core/constant/string.dart';
 import 'package:e_commerce/presentation/registration/common_widgets/textfield.dart';
@@ -17,9 +18,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<ApiProvider>(context, listen: false).isLoading;
+  }
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController newPasswordController = TextEditingController();
+  // TextEditingController newPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     size: 25,
                     color: Colors.grey,
                   ),
-                  controller: newPasswordController,
+                  controller: passwordController,
                   hinttext: 'Enter Your password'),
               SizedBox(
                 height: height * 0.04,
@@ -123,23 +130,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: height * .03,
               ),
               Consumer<AuthProvider>(builder: (context, value, child) {
-                return
-                  // value.isLoading
-                    // ? const Center(child: CircularProgressIndicator())
-                    // :
-                MyButton(
+                return value.isLoading == true? const CircularProgressIndicator():MyButton(
                         text: 'Login',
                         onTap: () {
-                          value.signInUser(email: emailController.text, password: passwordController.text, context: context);
-                          // logIn(emailController.text, passwordController.text);
-                        });
+                         value.signInUser(email: emailController.text, password: passwordController.text, context: context);
+                          });
               }),
               SizedBox(
                 height: buttonsizebox - 0.04,
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  const TabBarScreen(),), (route) => false);
+                   Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  const TabBarScreen(),), (route) => false);
                 },
                 child: Container(
                   height: height * 0.07,

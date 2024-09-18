@@ -25,7 +25,6 @@ class _RegistrationState extends State<Registration> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     final ButtonSizebox = height * .02;
-    final Sizeboxhieght = height * .03;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: height * .09,
@@ -102,9 +101,9 @@ class _RegistrationState extends State<Registration> {
               Consumer<AuthProvider>(
                 builder: (context, value, child) {
                   return
-                    // value.isLoading
-                    //   ? const Center(child: CircularProgressIndicator())
-                    //   :
+                    value.isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      :
                   MyButton(
                           onTap: () async {
                             await AuthProvider().createUser(
@@ -208,11 +207,11 @@ class _RegistrationState extends State<Registration> {
     );
   }
 
-  emailVarification() {
-    String email = emailController.text;
-
-    final bool emailValid = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email);
-  }
+  // emailVarification() {
+  //   String email = emailController.text;
+  //
+  //   final bool emailValid = RegExp(
+  //           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+  //       .hasMatch(email);
+  // }
 }

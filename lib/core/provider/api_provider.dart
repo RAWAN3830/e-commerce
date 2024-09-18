@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_commerce/core/services/api_service/add_to_cart_function.dart';
+import 'package:e_commerce/core/services/cart_services/add_to_cart_function.dart';
 import 'package:e_commerce/domain/categorie_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -58,6 +58,13 @@ class ApiProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // --------------- PROVIDER OF DELETE PRODUCT FROM CART ------------------------------
+  Future<void> deleteFromCart(String productId) async{
+    setLoading(true);
+    await addProductToCart.deleteProductFromCart(productId);
+    setLoading(false);
+    notifyListeners();
+  }
 
   set setTheme(value) {
     isTheme = value;

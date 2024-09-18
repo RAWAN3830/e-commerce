@@ -1,12 +1,11 @@
+import 'package:e_commerce/presentation/tabs/cart_screen/cart_screen.dart';
 import 'package:e_commerce/presentation/tabs/home_screen/tabbar_screen/tabbat_title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../core/provider/api_provider.dart';
-import '../../../registration/login_screen.dart';
 import '../home_screen.dart';
-import '../second.dart';
+
 
 class TabBarScreen extends StatefulWidget {
   const TabBarScreen({Key? key}) : super(key: key);
@@ -35,7 +34,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
     final width = MediaQuery.of(context).size.width;
 
     return DefaultTabController(
-      length: 4,
+      length: 2,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -112,22 +111,23 @@ class _TabBarScreenState extends State<TabBarScreen> {
                     'https://assets.ajio.com/medias/sys_master/images/images/h3b/h6f/50046445912094/'
                     'Top-banner-carousel-banner-4.jpg',
                 title: 'title'),
-            const TabbarTitle(
-                imagePath:
-                    'https://i.pinimg.com/564x/70/e4/9c/70e49c4a2ea8af1f538cd0ea2c505db9.jpg',
-                title: 'title'),
-            const TabbarTitle(
-                imagePath:
-                    'https://i.pinimg.com/564x/70/e4/9c/70e49c4a2ea8af1f538cd0ea2c505db9.jpg',
-                title: 'title'),
+            // const TabbarTitle(
+            //     imagePath:
+            //         'https://i.pinimg.com/564x/70/e4/9c/70e49c4a2ea8af1f538cd0ea2c505db9.jpg',
+            //     title: 'title'),
+            // const TabbarTitle(
+            //     imagePath:
+            //         'https://i.pinimg.com/564x/70/e4/9c/70e49c4a2ea8af1f538cd0ea2c505db9.jpg',
+            //     title: 'title'),
           ]),
         ),
-        body: const TabBarView(
+        body:   TabBarView(
           children: [
             MainHomeScreen(),
-            LoginScreen(),
-            second(),
-            second(),
+            CartScreen()
+            // LoginScreen(),
+            // second(),
+            // second(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -160,3 +160,5 @@ class _TabBarScreenState extends State<TabBarScreen> {
     );
   }
 }
+
+
