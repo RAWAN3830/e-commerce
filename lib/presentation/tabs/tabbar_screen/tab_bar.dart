@@ -1,10 +1,10 @@
 import 'package:e_commerce/presentation/tabs/cart_screen/cart_screen.dart';
-import 'package:e_commerce/presentation/tabs/home_screen/tabbar_screen/tabbat_title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/provider/api_provider.dart';
-import '../home_screen.dart';
+import '../category_screen/category_screen.dart';
+import '../home_screen/home_screen.dart';
 
 
 class TabBarScreen extends StatefulWidget {
@@ -15,6 +15,7 @@ class TabBarScreen extends StatefulWidget {
 
 class _TabBarScreenState extends State<TabBarScreen> {
   int _selectedIndex = 0;
+  final searchController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -27,9 +28,21 @@ class _TabBarScreenState extends State<TabBarScreen> {
     });
   }
 
+  Widget _body(){
+    switch (_selectedIndex){
+      case 0:
+        return const  MainHomeScreen();
+      case 1:
+        return const CategoriesScreen();
+      case 2:
+        return const CartScreen();
+      default:
+        return const MainHomeScreen();
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    final searchControlloer = TextEditingController();
+
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
@@ -38,7 +51,6 @@ class _TabBarScreenState extends State<TabBarScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-//backgroundColor: Colors.white,
           title: Column(
             children: [
               Row(
@@ -54,10 +66,10 @@ class _TabBarScreenState extends State<TabBarScreen> {
                       color: const Color(0xffeaf4f4),
                       child: TextField(
                         onSubmitted: (value) {
-                          searchControlloer.text = value;
+                          searchController.text = value;
                           // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyHomePage(title: searchController.text),), (route) => false);
                         },
-                        controller: searchControlloer,
+                        controller: searchController,
                         style: const TextStyle(color: Colors.black),
                         maxLines: 1,
                         decoration: InputDecoration(
@@ -70,7 +82,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                             child: CircleAvatar(
                                 radius: height * 0.015,
                                 backgroundImage:
-                                    const AssetImage('assets/splash.png')),
+                                const AssetImage('assets/splash.png')),
                           ),
                           suffixIcon: Icon(
                             CupertinoIcons.camera,
@@ -100,36 +112,9 @@ class _TabBarScreenState extends State<TabBarScreen> {
               ),
             ],
           ),
-          bottom: TabBar(tabs: [
-            Tab(
-                icon: Icon(
-              Icons.home,
-              size: height * 0.03,
-            )),
-            const TabbarTitle(
-                imagePath:
-                    'https://assets.ajio.com/medias/sys_master/images/images/h3b/h6f/50046445912094/'
-                    'Top-banner-carousel-banner-4.jpg',
-                title: 'title'),
-            // const TabbarTitle(
-            //     imagePath:
-            //         'https://i.pinimg.com/564x/70/e4/9c/70e49c4a2ea8af1f538cd0ea2c505db9.jpg',
-            //     title: 'title'),
-            // const TabbarTitle(
-            //     imagePath:
-            //         'https://i.pinimg.com/564x/70/e4/9c/70e49c4a2ea8af1f538cd0ea2c505db9.jpg',
-            //     title: 'title'),
-          ]),
         ),
-        body:   TabBarView(
-          children: [
-            MainHomeScreen(),
-            CartScreen()
-            // LoginScreen(),
-            // second(),
-            // second(),
-          ],
-        ),
+        body:_body(),
+
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.black,
           type: BottomNavigationBarType.fixed,

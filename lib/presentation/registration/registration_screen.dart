@@ -2,7 +2,6 @@ import 'package:e_commerce/core/constant/string.dart';
 import 'package:e_commerce/core/provider/auth_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'common_widgets/button.dart';
 import 'common_widgets/textfield.dart';
@@ -141,65 +140,9 @@ class _RegistrationState extends State<Registration> {
               SizedBox(
                 height: ButtonSizebox,
               ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  height: height * 0.07,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 1),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            radius: 15,
-                            child: SvgPicture.asset('assets/google.svg')),
-                        SizedBox(
-                          width: width * 0.04,
-                        ),
-                        const Text(
-                          'Sign Up with Google',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: ButtonSizebox,
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  height: height * 0.07,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black26, width: 1),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          radius: 20,
-                          child: SvgPicture.asset('assets/facebook.svg')),
-                      SizedBox(
-                        width: width * 0.04,
-                      ),
-                      const Text(
-                        'Sign Up with Facebook',
-                        style: TextStyle(fontFamily: "poppins", fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              LoginViaAnothor(onTap: (){}, text: 'Sign Up with Google', ImagePath:'assets/google.svg',),
+              SizedBox(height: ButtonSizebox,),
+              LoginViaAnothor(onTap: (){}, text:'Sign Up with Facebook', ImagePath: 'assets/facebook.svg')
             ],
           ),
         ),

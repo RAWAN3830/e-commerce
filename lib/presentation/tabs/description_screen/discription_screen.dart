@@ -19,6 +19,7 @@ class DiscriptionScreen extends StatefulWidget {
 class _DiscriptionScreenState extends State<DiscriptionScreen> {
   double _currentRating = 0;
 
+
   @override
   void initState() {
     super.initState();

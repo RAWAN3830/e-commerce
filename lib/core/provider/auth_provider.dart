@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../presentation/registration/login_screen.dart';
-import '../../presentation/tabs/home_screen/tabbar_screen/tab_bar.dart';
+import '../../presentation/tabs/tabbar_screen/tab_bar.dart';
 import '../services/auth_service/firebase_auth.dart';
 
 class AuthProvider with ChangeNotifier{

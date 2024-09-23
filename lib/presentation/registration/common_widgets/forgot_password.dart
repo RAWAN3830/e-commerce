@@ -1,6 +1,4 @@
 import 'package:e_commerce/presentation/registration/common_widgets/textfield.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/constant/string.dart';
@@ -81,82 +79,3 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     );
   }
 }
-
-// showModalBottomSheet<void>(
-// isDismissible: true,
-// showDragHandle: true,
-// context: context,
-// builder: (BuildContext context) {
-// return Container(
-// height: height * 0.6,
-// decoration: const BoxDecoration(
-// borderRadius: BorderRadius.only(
-// topLeft: Radius.circular(18),
-// topRight: Radius.circular(18)),
-// ),
-// child: Center(
-// child: Padding(
-// padding: const EdgeInsets.all(10),
-// child: Column(
-// crossAxisAlignment: CrossAxisAlignment.start,
-// children: [
-// SizedBox(
-// height: height * 0.01,
-// ),
-// const Text(
-// LoginScree.createnewPass,
-// style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-// ),
-//
-// const Text(LoginScree.enteremailorphone,
-// style: TextStyle(
-// fontSize: 15,
-// ),
-// ),
-// SizedBox(
-// height: height * 0.04,
-// ),
-// const Text('New Password',
-// style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-// ),
-// SizedBox(
-// height: height * 0.01,
-// ),
-// textField(
-// prefixIcon: const Icon(
-// Icons.password,
-// size: 25,
-// color: Colors.grey,
-// ),
-// controller: newPasswordController,
-// hinttext: LoginScree.password),
-// SizedBox(
-// height: height * 0.01,
-// ),
-// const Text(
-// LoginScree.conformpass,
-// style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-// ),
-// SizedBox(
-// height: height * 0.01,
-// ),
-// textField(
-// prefixIcon: const Icon(
-// Icons.password,
-// size: 25,
-// color: Colors.grey,
-// ),
-// controller: newPasswordController,
-// hinttext: LoginScree.password),
-// SizedBox(
-// height: height * 0.03,
-// ),
-// MyButton(onTap: (){
-// Navigator.pop(context);
-// }, text:'Change Password')
-// ]),
-// ),
-// ),
-// );
-// },
-// );

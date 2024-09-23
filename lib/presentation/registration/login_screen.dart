@@ -6,9 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/provider/auth_provider.dart';
-import '../tabs/home_screen/home_screen.dart';
-import '../tabs/home_screen/tabbar_screen/tab_bar.dart';
-import 'common_widgets/model_bottom_sheet.dart';
+import '../tabs/tabbar_screen/tab_bar.dart';
+import 'common_widgets/forgot_password.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -115,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Forgot Password ?',
                         style: TextStyle(
                             color: Colors.lightGreen,
@@ -130,7 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: height * .03,
               ),
               Consumer<AuthProvider>(builder: (context, value, child) {
-                return value.isLoading == true? const CircularProgressIndicator():MyButton(
+                return value.isLoading == true? const Center(child: CircularProgressIndicator())
+                    :MyButton(
                         text: 'Login',
                         onTap: () {
                          value.signInUser(email: emailController.text, password: passwordController.text, context: context);
