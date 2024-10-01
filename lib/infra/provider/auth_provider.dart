@@ -62,4 +62,14 @@ class AuthProvider with ChangeNotifier{
    }
     notifyListeners();
   }
+
+  Future<void> signOutUser() async{
+    setLoading(true);
+    await FirebaseAuth.instance.signOut();
+  }
+
+  bool isLogin(){
+    if(FirebaseAuth.instance.currentUser == null) return false;
+    return true;
+  }
 }
