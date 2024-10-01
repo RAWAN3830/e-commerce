@@ -16,7 +16,7 @@ class _CarasoleSliderState extends State<CarasoleSlider> {
   ];
 
   final CarouselSliderController  carousel= CarouselSliderController();
-  // final CarasoleSliderCon carousel = CarouselController();
+
   int currentIndex = 0;
 
   @override
@@ -34,12 +34,9 @@ class _CarasoleSliderState extends State<CarasoleSlider> {
               padding: const EdgeInsets.all(5.0), // Add padding inside the image container
               decoration: BoxDecoration(
                 color: Colors.red, // Background color for the container
-                borderRadius: BorderRadius.circular(8.0), // Rounded corners
-              ),
-              child: Image.network(
-                item['image_path'],
-                fit: BoxFit.fill,
-                width: double.infinity,
+                borderRadius: BorderRadius.circular(8.0),
+                // border: Border.all(color: Colors.red,width: 3),
+                image: DecorationImage(image: NetworkImage(item['image_path']),fit: BoxFit.fill)// Rounded corners
               ),
             ),
           ),
@@ -68,7 +65,7 @@ class _CarasoleSliderState extends State<CarasoleSlider> {
               margin: const EdgeInsets.symmetric(horizontal: 3.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: currentIndex == entry.key ? Colors.red : Colors.teal,
+                color: currentIndex == entry.key ? Colors.red : Colors.lightGreenAccent,
               ),
             ),
           );

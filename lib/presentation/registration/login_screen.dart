@@ -1,11 +1,11 @@
-import 'package:e_commerce/core/provider/api_provider.dart';
 import 'package:e_commerce/presentation/registration/common_widgets/button.dart';
 import 'package:e_commerce/core/constant/string.dart';
 import 'package:e_commerce/presentation/registration/common_widgets/textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../core/provider/auth_provider.dart';
+import '../../infra/provider/api_provider.dart';
+import '../../infra/provider/auth_provider.dart';
 import '../tabs/tabbar_screen/tab_bar.dart';
 import 'common_widgets/forgot_password.dart';
 

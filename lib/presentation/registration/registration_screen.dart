@@ -1,8 +1,8 @@
 import 'package:e_commerce/core/constant/string.dart';
-import 'package:e_commerce/core/provider/auth_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../infra/provider/auth_provider.dart';
 import 'common_widgets/button.dart';
 import 'common_widgets/textfield.dart';
 import 'login_screen.dart';

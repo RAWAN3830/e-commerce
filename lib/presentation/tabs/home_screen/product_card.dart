@@ -1,10 +1,12 @@
-import 'package:e_commerce/core/provider/cart_provider.dart';
 import 'package:e_commerce/domain/model_class.dart';
 import 'package:e_commerce/presentation/tabs/description_screen/discription_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../core/provider/api_provider.dart';
+
+import '../../../infra/provider/api_provider.dart';
+import '../../../infra/provider/cart_provider.dart';
+
 
 class productModelCard extends StatelessWidget {
   final ProductModel product;

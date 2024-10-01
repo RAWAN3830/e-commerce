@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   dio:
+  icons_launcher:
   provider:
   flutter_svg:
   http:
@@ -47,6 +48,8 @@ dependencies:
   fluttertoast: 8.2.5
   cloud_firestore:
   custom_rating_bar:
+  razorpay_flutter:
+  uuid:
 
 
 

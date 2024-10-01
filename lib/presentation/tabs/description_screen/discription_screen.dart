@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/provider/api_provider.dart';
 import '../../../domain/model_class.dart';
+import '../../../infra/provider/api_provider.dart';
 
 class DiscriptionScreen extends StatefulWidget {
   final ProductModel products;

@@ -1,9 +1,11 @@
-import 'package:e_commerce/core/provider/api_provider.dart';
-import 'package:e_commerce/core/provider/cart_provider.dart';
+
 import 'package:e_commerce/domain/model_class.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../infra/provider/api_provider.dart';
+import '../../../infra/provider/cart_provider.dart';
 
 class CartCard extends StatefulWidget {
   final ProductModel product;
@@ -19,6 +21,7 @@ class _CartCardState extends State<CartCard> {
   void initState() {
     super.initState();
     Provider.of<CartProvider>(context, listen: false);
+    // Provider.of<CartProvider>(context, listen: false).total_qua_Price(widget.product.price, widget.product.quantity);
   }
 
   @override
@@ -81,7 +84,8 @@ class _CartCardState extends State<CartCard> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                '\$ ${widget.product.price}',
+                           // Provider.of<CartProvider>(context, listen: false).total_qua_Price(widget.product.price., widget.product.quantity),
+                                 '\$ ${widget.product.price}',
                                 style: TextStyle(
                                     fontSize: height * 0.023,
                                     fontWeight: FontWeight.bold),
@@ -92,7 +96,7 @@ class _CartCardState extends State<CartCard> {
                                   onPressed: () async {
                                     if (widget.product.id == null) return;
                                     await value
-                                        .deleteFromCart(widget.product.id!);
+                                        .deleteFromCart(widget.product.id.toString());
                                     if (!context.mounted) return;
                                     await value.getDataFromCart();
                                   },
@@ -107,7 +111,7 @@ class _CartCardState extends State<CartCard> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 IconButton(
-                                    icon: Icon(CupertinoIcons.add_circled_solid,
+                                    icon: const Icon(CupertinoIcons.add_circled_solid,
                                         size: 22),
                                     onPressed: () async {
                                       await value.addToCart(widget.product);
@@ -123,12 +127,11 @@ class _CartCardState extends State<CartCard> {
                                 ),
                                 SizedBox(width: width * 0.01),
                                 IconButton(
-                                    icon: Icon(CupertinoIcons.minus_circle_fill,
+                                    icon: const Icon(CupertinoIcons.minus_circle_fill,
                                         size: 22),
                                   onPressed: () async {
                                     if (widget.product.id == null) return;
-                                    await value
-                                        .removeFromCart(widget.product.id!);
+                                    await value.removeFromCart(widget.product.id!);
                                     if (!context.mounted) return;
                                     await value.getDataFromCart();
                                   },

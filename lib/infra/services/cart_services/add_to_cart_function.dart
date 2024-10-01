@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../../../core/constant/string.dart';
 import '../../../domain/model_class.dart';
-import '../../constant/string.dart';
 
  class addProductToCart {
 //   static Future<dynamic> addToCart(ProductModel product) async {

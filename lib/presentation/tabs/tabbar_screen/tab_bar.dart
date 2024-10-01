@@ -1,8 +1,10 @@
+import 'package:e_commerce/presentation/registration/login_screen.dart';
 import 'package:e_commerce/presentation/tabs/cart_screen/cart_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../core/provider/api_provider.dart';
+import '../../../infra/provider/api_provider.dart';
+import '../../../infra/provider/auth_provider.dart';
 import '../category_screen/category_screen.dart';
 import '../home_screen/home_screen.dart';
 
@@ -51,6 +53,8 @@ class _TabBarScreenState extends State<TabBarScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+
+          // backgroundColor: Colors.red,
           title: Column(
             children: [
               Row(
@@ -102,7 +106,14 @@ class _TabBarScreenState extends State<TabBarScreen> {
                         });
                   }),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        Provider.of<AuthProvider>(context).signOutUser();
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  const LoginScreen(),), (route) => false);
+                      });
+
+
+                    },
                     icon: Icon(
                       CupertinoIcons.heart,
                       size: height * 0.03,

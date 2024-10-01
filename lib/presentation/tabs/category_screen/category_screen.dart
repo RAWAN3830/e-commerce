@@ -100,13 +100,12 @@
 //     );
 //   }
 // }
-
-import 'package:e_commerce/core/provider/api_provider.dart';
 import 'package:e_commerce/presentation/tabs/home_screen/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:marquee/marquee.dart';
 import 'package:provider/provider.dart';
-
-import '../../../core/provider/category_api_provider.dart';
+import '../../../infra/provider/api_provider.dart';
+import '../../../infra/provider/category_api_provider.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -135,14 +134,47 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Categories'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Categories'),
+      // ),
       body: SingleChildScrollView(
         child: Consumer<ApiProvider>(
           builder: (context, apiProvider, child) {
             return Column(
               children: [
+
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Container(
+                    height: height * 0.14,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.blue),
+                    child: Image.network('https://assets.myntassets.com/f_auto,q_auto:eco,dpr_1.3,w_600,c_limit,fl_progressive/assets/images/2024/9/16/fc21ea91-27c4-4cdb-b1b1-253fb1fe662a1726476766235-Omg-header_BFF_Phase02.gif',fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                Container(
+                  height: height * 0.03,
+                  width: double.infinity,
+                  color: Colors.red,
+                  child: Center(
+                    child: Marquee(
+                      text: 'SALE UPTO 50% OFF',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.white),
+                      scrollAxis: Axis.horizontal,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      blankSpace: 20.0,
+                      startPadding: 10.0,
+                      accelerationCurve: Curves.ease,
+                      decelerationCurve: Curves.ease,
+                    ),
+                  ),
+                ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
