@@ -1,12 +1,15 @@
+import 'package:e_commerce/core/constant/extension.dart';
 import 'package:e_commerce/presentation/registration/login_screen.dart';
 import 'package:e_commerce/presentation/tabs/cart_screen/cart_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+ import 'package:provider/provider.dart';
 import '../../../infra/provider/api_provider.dart';
 import '../../../infra/provider/auth_provider.dart';
 import '../category_screen/category_screen.dart';
 import '../home_screen/home_screen.dart';
+import '../profile_screen/order_details_screen.dart';
+
 
 
 class TabBarScreen extends StatefulWidget {
@@ -39,7 +42,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
       case 2:
         return const CartScreen();
       default:
-        return const MainHomeScreen();
+        return const OrderDetailsScreen();
     }
   }
   @override
@@ -109,7 +112,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                     onPressed: () {
                       setState(() {
                         Provider.of<AuthProvider>(context).signOutUser();
-                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  const LoginScreen(),), (route) => false);
+                        context.pushAndRemoveUntil(context, target: const LoginScreen());
                       });
 
 
@@ -127,10 +130,10 @@ class _TabBarScreenState extends State<TabBarScreen> {
         body:_body(),
 
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.black,
+          // backgroundColor: Colors.black,
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.blue, // Adjust the active icon color
+          selectedItemColor: Colors.blueAccent, // Adjust the active icon color
           unselectedItemColor: Colors.grey, // Adjust the inactive icon color
           onTap: _onItemTapped,
           items: const [

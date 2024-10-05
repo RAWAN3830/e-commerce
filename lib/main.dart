@@ -10,6 +10,7 @@ import 'infra/provider/api_provider.dart';
 import 'infra/provider/auth_provider.dart';
 import 'infra/provider/cart_provider.dart';
 import 'infra/provider/category_api_provider.dart';
+import 'infra/provider/order_detail_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
          ChangeNotifierProvider(create: (context) => CartProvider()),
          ChangeNotifierProvider(create: (context) => CategoryProvider()),
          ChangeNotifierProvider(create: (context) => PaymentProvider()),
+         ChangeNotifierProvider(create: (context) => OrderDetailProvider()),
       ],
       child: Consumer<ApiProvider>(
         builder: (context,theme,child) {

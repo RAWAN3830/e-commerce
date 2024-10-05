@@ -36,19 +36,19 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const CarasoleSlider(),
+              // const CarasoleSlider(),
               SizedBox(
                 height: height * 0.02,
               ),
 
-              Container(
-                height: height * 0.23,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                    // borderRadius: BorderRadius.circular(10),
-                    color: Colors.blue,image: DecorationImage(image: NetworkImage('https://assets.ajio.com/cms/AJIO/MOBILE/M-1.0-UHP-14092024-100ReasontoShop-Gif-Revised.gif'),fit: BoxFit.contain)),
-
-              ),
+              // Container(
+              //   height: height * 0.23,
+              //   width: double.infinity,
+              //   decoration: const BoxDecoration(
+              //       // borderRadius: BorderRadius.circular(10),
+              //       color: Colors.blue,image: DecorationImage(image: NetworkImage('https://assets.ajio.com/cms/AJIO/MOBILE/M-1.0-UHP-14092024-100ReasontoShop-Gif-Revised.gif'),fit: BoxFit.contain)),
+              //
+              // ),
               Consumer<ApiProvider>(builder: (context, product, child) {
                 return product.isLoading
                     ? const Center(child: CircularProgressIndicator())
@@ -59,7 +59,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         itemCount: product.productList.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisSpacing: 2,
-                            mainAxisExtent: height * .37,
+                            mainAxisExtent: height * .365,
                             crossAxisCount: 2,
                             mainAxisSpacing: 5),
                         itemBuilder: (context, index) {
@@ -67,18 +67,16 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                               product: product.productList[index]);
                         });
               }),
-              SizedBox(
-                height: height * 0.03,
-              ),
 
-              SizedBox(
-                height: height * 0.15,
-                width: double.infinity,
-                child: Image.network(
-                  'https://assets.ajio.com/cms/AJIO/WEB/D-1.0-UHP-25042024-MainBannerDailyChanging-Z1-P1-100Hrsspecialrev.gif',
-                  fit: BoxFit.fill,
-                ),
-              ),
+
+              // SizedBox(
+              //   height: height * 0.15,
+              //   width: double.infinity,
+              //   child: Image.network(
+              //     'https://assets.ajio.com/cms/AJIO/WEB/D-1.0-UHP-25042024-MainBannerDailyChanging-Z1-P1-100Hrsspecialrev.gif',
+              //     fit: BoxFit.fill,
+              //   ),
+              // ),
             ],
           ),
         ));

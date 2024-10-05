@@ -10,7 +10,7 @@ class AuthService {
   //-----------------------------------  FIREBASE AUTH FOR REGISTRATION --------------------------------------------------
 
   static Future<UserCredential> createUser(
-      {required String email, required String password}) async {
+      {required String email, required String password,required String name}) async {
     final firebase = FirebaseAuth.instance;
     final userCredentials = await firebase.createUserWithEmailAndPassword(
         email: email, password: password);
@@ -18,7 +18,9 @@ class AuthService {
     final userData = {
       'email': userCredentials.user?.email,
       'password': password,
-      'uid': userCredentials.user?.uid
+      'uid': userCredentials.user?.uid,
+      'name': name
+
     };
 
     await _fireStore
@@ -28,6 +30,11 @@ class AuthService {
 
     await _fireStore
         .collection(FirestoreCollections.cart)
+        .doc(userCredentials.user?.uid)
+        .set({});
+
+    await _fireStore
+        .collection(FirestoreCollections.order)
         .doc(userCredentials.user?.uid)
         .set({});
 

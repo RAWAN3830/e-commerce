@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/constant/extension.dart';
 import 'package:e_commerce/presentation/registration/common_widgets/button.dart';
 import 'package:e_commerce/core/constant/string.dart';
 import 'package:e_commerce/presentation/registration/common_widgets/textfield.dart';
@@ -141,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                   Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  const TabBarScreen(),), (route) => false);
+                  context.pushAndRemoveUntil(context, target:const TabBarScreen());
                 },
                 child: Container(
                   height: height * 0.07,

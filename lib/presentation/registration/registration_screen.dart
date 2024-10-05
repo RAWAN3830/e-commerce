@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/constant/extension.dart';
 import 'package:e_commerce/core/constant/string.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,6 @@ class _RegistrationState extends State<Registration> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     final ButtonSizebox = height * .02;
     return Scaffold(
       appBar: AppBar(
@@ -108,7 +108,8 @@ class _RegistrationState extends State<Registration> {
                             await AuthProvider().createUser(
                                 email: emailController.text,
                                 password: passwordController.text,
-                                context: context);
+                                context: context,
+                                name: nameController.text);
                             // Registration(emailController.text,passwordController.text);
                           },
                           text: 'create account',
@@ -120,9 +121,7 @@ class _RegistrationState extends State<Registration> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ));
+                  context.push(context,target: const LoginScreen());
                 },
                 child: Container(
                   height: height * 0.07,

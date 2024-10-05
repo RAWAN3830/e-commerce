@@ -26,4 +26,6 @@ class CreatAccountString {
 class FirestoreCollections {
   static const String users = 'users';
   static const String cart = 'cart';
+  static const String order = 'order';
+  static const String coupon = 'coupon';
 }

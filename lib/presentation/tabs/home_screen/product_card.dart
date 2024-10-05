@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/constant/extension.dart';
 import 'package:e_commerce/domain/model_class.dart';
 import 'package:e_commerce/presentation/tabs/description_screen/discription_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,7 +7,6 @@ import 'package:provider/provider.dart';
 
 import '../../../infra/provider/api_provider.dart';
 import '../../../infra/provider/cart_provider.dart';
-
 
 class productModelCard extends StatelessWidget {
   final ProductModel product;
@@ -19,7 +19,7 @@ class productModelCard extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(width * 0.01),
       child: Consumer<ApiProvider>(builder: (context, value, child) {
         return Container(
           decoration: BoxDecoration(
@@ -39,14 +39,12 @@ class productModelCard extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                DiscriptionScreen(products: product)));
-                      },
+                        context.push(context,target: DiscriptionScreen(products: product));
+                       },
                       child: Stack(
                         children: [
                           Container(
-                            height: height * .18,
+                            height: height * .19,
                             width: MediaQuery.sizeOf(context).width,
                             decoration: BoxDecoration(
                               image: DecorationImage(
@@ -62,10 +60,11 @@ class productModelCard extends StatelessWidget {
                             child: Row(
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
-                                  height: height * 0.020,
-                                  width: width * 0.11,
+                                  height: height * 0.024,
+                                  width: width * 0.12,
                                   decoration: BoxDecoration(
                                       color: value.getTheme == true
                                           ? Colors.black87
@@ -78,7 +77,7 @@ class productModelCard extends StatelessWidget {
                                     children: [
                                       Icon(
                                         CupertinoIcons.star_fill,
-                                        size: 14,
+                                        size: height * 0.02,
                                         color: (product.rating!.rate! <= 2)
                                             ? Colors.red
                                             : (product.rating!.rate! <= 3.5)
@@ -87,8 +86,8 @@ class productModelCard extends StatelessWidget {
                                       ),
                                       Text(
                                         ' ${product.rating?.rate}',
-                                        style: const TextStyle(
-                                            fontSize: 14,
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
                                             fontWeight: FontWeight.w500),
                                       ),
                                     ],
@@ -101,8 +100,8 @@ class productModelCard extends StatelessWidget {
                                   radius: height * 0.020,
                                   child: Center(
                                       child: IconButton(
-                                          icon: const Icon(CupertinoIcons.heart,
-                                              size: 22),
+                                          icon:  Icon(CupertinoIcons.heart,
+                                              size: height * 0.025),
                                           onPressed: () {})),
                                 )
                               ],
@@ -111,36 +110,56 @@ class productModelCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: height * .01),
+                    SizedBox(height: height * .02),
                     Text(
                       product.category ?? "",
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 16),
+                      maxLines: 2,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: height * 0.019),
                     ),
                     Text(
                       product.title ?? "",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
-                      style: const TextStyle(fontSize: 14,),
+                      style: TextStyle(
+                        fontSize: height * 0.016,
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          '\$ ${product.price}',
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w600),
-                        ),
-                        IconButton(
-                            onPressed: () async {
-                              await Provider.of<CartProvider>(context,listen: false)
-                                  .addToCart(product);
-                            },
-                            icon: const Icon(CupertinoIcons.cart)),
-                      ],
+                    Padding(
+                      padding:  EdgeInsets.only(top:height * 0.01),
+                      child: Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            '\$ ${product.price}',
+                            style: TextStyle(
+                                fontSize: height * 0.021,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Container(
+                            height: height * 0.04,
+                            width: width * 0.13,
+                            decoration: BoxDecoration(
+                                color: Colors.lightGreen,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Center(
+                              child: IconButton(
+                                  onPressed: () async {
+                                    await Provider.of<CartProvider>(
+                                            context,
+                                            listen: false)
+                                        .addToCart(product);
+                                  },
+                                  icon:
+                                      const Icon(CupertinoIcons.cart,color: Colors.black87,)),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

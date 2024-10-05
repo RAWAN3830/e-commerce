@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/constant/extension.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,10 +16,10 @@ class AuthProvider with ChangeNotifier{
 
   //-----------------------------------  CREATE - USER --------------------------------------------------
 
-  Future<void> createUser({required String email,required String password,required BuildContext context}) async {
+  Future<void> createUser({required String email,required String password,required String name,required BuildContext context}) async {
    try {
      setLoading(true);
-      userCredential = await AuthService.createUser(email: email, password: password);
+      userCredential = await AuthService.createUser(email: email, password: password, name: name,);
       notifyListeners();
       setLoading(false);
       Navigator.of(context).push(MaterialPageRoute(
@@ -48,7 +49,7 @@ class AuthProvider with ChangeNotifier{
       userCredential = await AuthService.loginUser(email: email, password: password);
       notifyListeners();
      setLoading(false);
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  const TabBarScreen(),), (route) => false); 
+     context.pushAndRemoveUntil(context, target:  const TabBarScreen());
     }
    catch(e)
    {

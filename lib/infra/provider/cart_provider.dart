@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
-
 import '../../domain/model_class.dart';
+import '../services/cart_services/add_to_cart_function.dart';
 import '../services/cart_services/delete_in_cart.dart';
 import '../services/cart_services/recive_to_cart.dart';
 
@@ -11,10 +11,6 @@ class CartProvider extends ChangeNotifier{
   bool isLoading = false;
   double totalCartValue = 0;
   double total = 0;
-
-  get addProductToCart => null;
-
-
 
   void setLoading(bool val){
     isLoading = val;

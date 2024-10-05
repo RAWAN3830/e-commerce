@@ -50,6 +50,8 @@ dependencies:
   custom_rating_bar:
   razorpay_flutter:
   uuid:
+  pdf:
+  printing:
 
 
 
