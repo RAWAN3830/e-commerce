@@ -10,7 +10,11 @@ class OrderProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( body: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('products '),
+      ),
+      body: SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: ListView.builder(
         shrinkWrap: true,

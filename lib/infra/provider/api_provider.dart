@@ -7,7 +7,7 @@ import '../services/api_service/product_api.dart';
 class ApiProvider with ChangeNotifier {
 
   bool isLoading = false;
-  bool isTheme = false;
+  bool isTheme = true;
 
   void setLoading(bool val)
   {

@@ -22,9 +22,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Orders Product'),
-      ),
+
       body: Consumer<OrderDetailProvider>(
         builder: (context, value, child) {
           return (value.orderedProductList.isEmpty)
@@ -36,10 +34,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderProductCard(
-                         orderProduct:
-                         value.orderedProductList[index].products,
-                       ),));
+                        context.push(context, target: OrderProductCard(
+                          orderProduct:
+                          value.orderedProductList[index].products,
+                        ));
                       },
                       child: Column(
                         children: [

@@ -9,6 +9,7 @@ import '../../../infra/provider/auth_provider.dart';
 import '../category_screen/category_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../profile_screen/order_details_screen.dart';
+import '../profile_screen/profile_screen.dart';
 
 
 
@@ -42,7 +43,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
       case 2:
         return const CartScreen();
       default:
-        return const OrderDetailsScreen();
+        return const ProfileScreen();
     }
   }
   @override
@@ -58,73 +59,70 @@ class _TabBarScreenState extends State<TabBarScreen> {
         appBar: AppBar(
 
           // backgroundColor: Colors.red,
-          title: Column(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+          title: Consumer<ApiProvider>(
+            builder: (context,value,child) {
+              return Column(
                 children: [
-                  SizedBox(
-                    height: height * 0.05,
-                    width: width * 0.65,
-                    child: Material(
-                      elevation: 3,
-                      borderRadius: BorderRadius.circular(15),
-                      color: const Color(0xffeaf4f4),
-                      child: TextField(
-                        onSubmitted: (value) {
-                          searchController.text = value;
-                          // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyHomePage(title: searchController.text),), (route) => false);
-                        },
-                        controller: searchController,
-                        style: const TextStyle(color: Colors.black),
-                        maxLines: 1,
-                        decoration: InputDecoration(
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          icon: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: CircleAvatar(
-                                radius: height * 0.015,
-                                backgroundImage:
-                                const AssetImage('assets/splash.png')),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: height * 0.05,
+                        width: width * 0.8,
+                        child: Material(
+                          elevation: 3,
+                          borderRadius: BorderRadius.circular(15),
+                          color: const Color(0xffeaf4f4),
+                          child: TextField(
+                            onSubmitted: (value) {
+                              searchController.text = value;
+                              // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyHomePage(title: searchController.text),), (route) => false);
+                            },
+                            controller: searchController,
+                            style: const TextStyle(color: Colors.black),
+                            maxLines: 1,
+                            decoration: InputDecoration(
+                              hintStyle: const TextStyle(color: Colors.black38),
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              icon: Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: CircleAvatar(
+                                    radius: height * 0.017,
+                                    backgroundImage:
+                                    const AssetImage('assets/splash.png')),
+                              ),
+                              suffixIcon: Icon(
+                                CupertinoIcons.camera,
+                                size: height * 0.022,
+                                color: Colors.black54,
+                              ),
+                              hintText: "Search by Product",
+                            ),
                           ),
-                          suffixIcon: Icon(
-                            CupertinoIcons.camera,
-                            size: height * 0.02,
-                            color: Colors.grey,
-                          ),
-                          hintText: "Search by Product",
                         ),
                       ),
-                    ),
-                  ),
-                  Consumer<ApiProvider>(builder: (context, values, child) {
-                    return Switch(
-                        value: values.getTheme,
-                        onChanged: (value) {
-                          values.setTheme = value;
-                        });
-                  }),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        Provider.of<AuthProvider>(context).signOutUser();
-                        context.pushAndRemoveUntil(context, target: const LoginScreen());
-                      });
 
-
-                    },
-                    icon: Icon(
-                      CupertinoIcons.heart,
-                      size: height * 0.03,
-                    ),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            Provider.of<AuthProvider>(context).signOutUser();
+                            context.pushAndRemoveUntil(context, target: const LoginScreen());
+                          });
+                        },
+                        icon: Icon(
+                          CupertinoIcons.heart,
+                          color: value.isTheme ?Colors.lightGreen:Colors.black ,
+                          size: height * 0.03,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
+              );
+            }
           ),
         ),
         body:_body(),

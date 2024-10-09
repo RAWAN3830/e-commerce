@@ -38,8 +38,9 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
              theme: (theme.isTheme == false)
                   ? ThemeData(
-                fontFamily: 'suse',
-               appBarTheme: const AppBarTheme(actionsIconTheme: IconThemeData(color: Colors.black)),
+                appBarTheme: AppBarTheme(color: Colors.lightGreen),
+               textTheme: const TextTheme(titleMedium: TextStyle(fontSize: 18)),
+               // appBarTheme: const AppBarTheme(actionsIconTheme: IconThemeData(color: Colors.black)),
                 useMaterial3: true,
               )
                   : ThemeData.dark(useMaterial3: true),

@@ -41,19 +41,17 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           builder: (context, apiProvider, child) {
             return Column(
               children: [
-
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Container(
-                    height: height * 0.14,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue),
-                    child: Image.network('https://assets.myntassets.com/f_auto,q_auto:eco,dpr_1.3,w_600,c_limit,fl_progressive/assets/images/2024/9/16/fc21ea91-27c4-4cdb-b1b1-253fb1fe662a1726476766235-Omg-header_BFF_Phase02.gif',fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8),
+                //   child: Container(
+                //     height: height * 0.14,
+                //     width: double.infinity,
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),),
+                //     child: Image.network('https://assets.myntassets.com/f_auto,q_auto:eco,dpr_1.3,w_600,c_limit,fl_progressive/assets/images/2024/9/16/fc21ea91-27c4-4cdb-b1b1-253fb1fe662a1726476766235-Omg-header_BFF_Phase02.gif',fit: BoxFit.fill,
+                //     ),
+                //   ),
+                // ),
                 Container(
                   height: height * 0.03,
                   width: double.infinity,

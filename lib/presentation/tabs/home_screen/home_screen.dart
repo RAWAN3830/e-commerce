@@ -35,6 +35,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // const CarasoleSlider(),
               SizedBox(
