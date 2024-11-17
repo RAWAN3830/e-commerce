@@ -54,7 +54,11 @@ Follow these steps to set up and run the app on your local machine:
    </td>
   <td>
       <img src="https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/invoice_screen.png" height="400"/>
-   </td> </tr> 
+   </td>
+<td>
+      <img src="https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/cart1" height="400"/>
+   </td>
+</tr> 
 </table>
 
    
