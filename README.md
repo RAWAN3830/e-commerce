@@ -37,3 +37,6 @@ Follow these steps to set up and run the app on your local machine:
    ```bash
    git clone https://github.com/RAWAN3830/e-commerce.git
    cd e-commerce
+<img src = "https://github.com/RAWAN3830/Platform_Convetor/assets/138647473/e5010ed0-7753-44dc-8ec4-3f5906c74fc7 " height="500"/>
+
+   
