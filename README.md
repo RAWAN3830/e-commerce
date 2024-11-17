@@ -37,12 +37,6 @@ Follow these steps to set up and run the app on your local machine:
    ```bash
    git clone https://github.com/RAWAN3830/e-commerce.git
    cd e-commerce
-<img src = "https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/registration.png" height="400"/>
-<img src = "https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/login.png" height="400"/>
-<img src = "https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/home1.png" height="400"/>
-<img src = "https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/home2.png" height="400"/>
-<img src = "https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/discription.png" height="400"/>
-<img src = "https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/razorpay.png" height="400"/>
-<img src = "https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/invoice.png" height="400"/>
+<table> <tr> <td><img src="https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/registration.png" height="400"/></td> <td><img src="https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/login.png" height="400"/></td> <td><img src="https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/home1.png" height="400"/></td> </tr> <tr> <td><img src="https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/home2.png" height="400"/></td> <td><img src="https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/discription.png" height="400"/></td> <td><img src="https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/razorpay1.png" height="400"/></td> </tr> <tr> <td colspan="3"><img src="https://github.com/RAWAN3830/e-commerce/blob/main/screenshots/invoice_screen.png" height="400"/></td> </tr> </table>
 
    
