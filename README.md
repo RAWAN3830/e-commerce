@@ -37,12 +37,3 @@ Follow these steps to set up and run the app on your local machine:
    ```bash
    git clone https://github.com/RAWAN3830/e-commerce.git
    cd e-commerce
-This app follows the CLEAN architecture principles:
-lib/
-├── core/                   # Core functionalities (constants, utils)
-├── data/                   # Data sources and repositories
-├── domain/                 # Entities and use cases
-├── presentation/           # UI (screens, widgets)
-├── application/            # State management and providers
-└── services/               # API integrations (Firebase, Razorpay)
-
